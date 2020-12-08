@@ -7,8 +7,15 @@ class Biblioteca
         @livros[livro.categoria] ||= []
         @livros[livro.categoria] << livro
     end
-        # Ou criando um attr_reader :livros
+        
+    # Ou criando um attr_reader :livros
     def livros
-        @livros
+        @livros .values.flaten
+    end
+
+    def livros_por_categoria(categoria)
+        @livros[categoria].each do |livro|
+            yield livro
+        end
     end
 end
